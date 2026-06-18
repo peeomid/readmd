@@ -6,6 +6,12 @@ The goal is simple: write in Markdown, run one command, get a polished HTML page
 
 ![readmd paper notebook demo](assets/demo-paper-notebook.png)
 
+## Live Demos
+
+- Overview: <https://peeomid.github.io/readmd/demos/theme-style/>
+- Paper notebook: <https://peeomid.github.io/readmd/demos/theme-style/paper-notebook.html>
+- White notebook: <https://peeomid.github.io/readmd/demos/theme-style/white-notebook.html>
+
 ## Focus
 
 - Generate HTML from Markdown.
@@ -132,12 +138,6 @@ These commands help humans and agents inspect the exact built-in settings.
 ## Demo Pages
 
 The repo includes generated demo pages for every built-in theme/style pair.
-
-View rendered demos in a browser:
-
-- Overview: <https://peeomid.github.io/readmd/demos/theme-style/>
-- Paper notebook: <https://peeomid.github.io/readmd/demos/theme-style/paper-notebook.html>
-- White notebook: <https://peeomid.github.io/readmd/demos/theme-style/white-notebook.html>
 
 Open the overview page:
 
