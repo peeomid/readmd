@@ -158,6 +158,7 @@ pub fn render(
     config: &Config,
     theme_name: Option<&str>,
     style_name: Option<&str>,
+    generated_by_readmd: bool,
 ) -> Result<String> {
     if !is_markdown(input) {
         return Err(ReadmdError::Message(format!(
@@ -179,7 +180,12 @@ pub fn render(
     let title = note_title(&markdown, &note_path);
     let article_html = render_markdown(&markdown);
 
-    Ok(build_document(&title, &theme.css(), &article_html))
+    Ok(build_document(
+        &title,
+        &theme.css(),
+        &article_html,
+        generated_by_readmd,
+    ))
 }
 
 #[cfg(test)]
@@ -250,8 +256,8 @@ mod tests {
         let input = dir.path().join("note.md");
         std::fs::write(&input, "# Hello").expect("write markdown");
 
-        let html =
-            render(&input, &crate::config::default_config(), None, None).expect("render html");
+        let html = render(&input, &crate::config::default_config(), None, None, true)
+            .expect("render html");
 
         assert!(html.starts_with("<!doctype html>"));
         assert!(html.contains("<title>Hello</title>"));

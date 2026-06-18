@@ -202,6 +202,8 @@ impl Theme {
                 ".reader .frontmatter-item dd{{margin:0;color:{text};font-size:0.96em;line-height:1.45;word-break:break-word;}}\n",
                 ".reader img{{max-width:100%;height:auto;border-radius:18px;box-shadow:0 14px 42px rgba(0,0,0,0.16);}}\n",
                 ".reader hr{{width:34%;border:0;border-top:1px solid {hr_color};margin:{hr_margin};}}\n",
+                ".readmd-footer{{max-width:{reader_width};margin:1.4em auto 0;padding:0 0 clamp(18px,3vw,40px);color:{muted};font-family:{body_font};font-size:0.78em;line-height:1.4;text-align:center;}}\n",
+                ".readmd-footer a{{color:{link};text-decoration-thickness:0.08em;text-underline-offset:0.18em;}}\n",
                 ".reader .syntax-keyword{{color:{keyword};}}\n",
                 ".reader .syntax-string{{color:{string};}}\n",
                 ".reader .syntax-comment{{color:{comment};}}\n",

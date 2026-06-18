@@ -12,6 +12,8 @@ pub struct Config {
     pub default_theme: String,
     #[serde(default = "default_style_name")]
     pub default_style: String,
+    #[serde(default = "default_generated_by_readmd")]
+    pub generated_by_readmd: bool,
     #[serde(default)]
     pub themes: BTreeMap<String, Theme>,
 }
@@ -23,6 +25,8 @@ struct ConfigFile {
     #[serde(default)]
     default_style: Option<String>,
     #[serde(default)]
+    generated_by_readmd: Option<bool>,
+    #[serde(default)]
     themes: BTreeMap<String, Theme>,
 }
 
@@ -30,12 +34,17 @@ pub fn default_config() -> Config {
     Config {
         default_theme: "paper".to_string(),
         default_style: default_style_name(),
+        generated_by_readmd: default_generated_by_readmd(),
         themes: builtin_themes(),
     }
 }
 
 fn default_style_name() -> String {
     "editorial".to_string()
+}
+
+fn default_generated_by_readmd() -> bool {
+    true
 }
 
 pub fn default_config_toml() -> String {
@@ -89,6 +98,7 @@ pub fn merge_config(mut base: Config, other: Config) -> Config {
     if !other.default_style.is_empty() {
         base.default_style = other.default_style;
     }
+    base.generated_by_readmd = other.generated_by_readmd;
     for (name, theme) in other.themes {
         base.themes.insert(name, theme);
     }
@@ -108,6 +118,9 @@ impl ConfigFile {
         Config {
             default_theme: self.default_theme.unwrap_or_default(),
             default_style: self.default_style.unwrap_or_default(),
+            generated_by_readmd: self
+                .generated_by_readmd
+                .unwrap_or_else(default_generated_by_readmd),
             themes: self.themes,
         }
     }
@@ -139,6 +152,7 @@ mod tests {
         let toml = default_config_toml();
         assert!(toml.contains("default_theme = \"paper\""));
         assert!(toml.contains("default_style = \"editorial\""));
+        assert!(toml.contains("generated_by_readmd = true"));
         assert!(toml.contains("[themes.paper]"));
         assert!(toml.contains("[themes.night]"));
     }
@@ -149,6 +163,7 @@ mod tests {
             r##"
 default_theme = "custom"
 default_style = "notebook"
+generated_by_readmd = false
 
 [themes.custom]
 name = "Custom"
@@ -164,6 +179,7 @@ mobile_padding = "12px"
 
         assert_eq!(merged.default_theme, "custom");
         assert_eq!(merged.default_style, "notebook");
+        assert!(!merged.generated_by_readmd);
         assert!(merged.themes.contains_key("custom"));
         assert!(merged.themes.contains_key("paper"));
         assert!(merged.themes.contains_key("night"));

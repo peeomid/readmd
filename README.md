@@ -56,6 +56,12 @@ Print HTML to terminal:
 readmd note.md --stdout
 ```
 
+Hide the generated footer:
+
+```bash
+readmd note.md --no-generated-by-readmd
+```
+
 ## Theme Config
 
 `readmd` ships with CalmPage-style color themes and reader styles.
@@ -95,9 +101,10 @@ Example default values:
 ```toml
 default_theme = "paper"
 default_style = "editorial"
+generated_by_readmd = true
 ```
 
-After that, normal `readmd note.md` runs will use the edited config unless `--config`, `--theme`, or `--style` overrides it.
+After that, normal `readmd note.md` runs will use the edited config unless `--config`, `--theme`, `--style`, `--generated-by-readmd`, or `--no-generated-by-readmd` overrides it.
 
 ## Theme Commands
 
@@ -125,6 +132,12 @@ These commands help humans and agents inspect the exact built-in settings.
 ## Demo Pages
 
 The repo includes generated demo pages for every built-in theme/style pair.
+
+View rendered demos in a browser:
+
+- Overview: <https://peeomid.github.io/readmd/demos/theme-style/>
+- Paper notebook: <https://peeomid.github.io/readmd/demos/theme-style/paper-notebook.html>
+- White notebook: <https://peeomid.github.io/readmd/demos/theme-style/white-notebook.html>
 
 Open the overview page:
 

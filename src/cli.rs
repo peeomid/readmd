@@ -13,6 +13,7 @@ const HELP_AFTER: &str = r#"Examples:
   readmd README.md --output public/readme.html
   readmd README.md --tmp --open
   readmd README.md --stdout
+  readmd README.md --no-generated-by-readmd
   readmd themes list
   readmd themes print paper
   readmd styles list
@@ -29,6 +30,7 @@ Output behavior:
   - --tmp: writes to a temp file and prints the path
   - --stdout: prints HTML and writes no file
   - --open: opens the written file after save
+  - generated footer is on by default and links to the ReadMd project page
 
 Config lookup order:
   1. --config <path>
@@ -102,6 +104,20 @@ pub struct Cli {
 
     #[arg(long, help = "Open the written HTML file after save.")]
     pub open: bool,
+
+    #[arg(
+        long,
+        conflicts_with = "no_generated_by_readmd",
+        help = "Show the generated-by-ReadMd footer."
+    )]
+    pub generated_by_readmd: bool,
+
+    #[arg(
+        long,
+        conflicts_with = "generated_by_readmd",
+        help = "Hide the generated-by-ReadMd footer."
+    )]
+    pub no_generated_by_readmd: bool,
 }
 
 #[derive(Debug, Subcommand)]
@@ -171,8 +187,20 @@ fn run_render(cli: Cli) -> Result<()> {
         .ok_or_else(|| ReadmdError::Message("missing input file".to_string()))?;
 
     let config = crate::config::Config::load(cli.config.as_deref())?;
-    let html =
-        crate::renderer::render(&input, &config, cli.theme.as_deref(), cli.style.as_deref())?;
+    let generated_by_readmd = if cli.generated_by_readmd {
+        true
+    } else if cli.no_generated_by_readmd {
+        false
+    } else {
+        config.generated_by_readmd
+    };
+    let html = crate::renderer::render(
+        &input,
+        &config,
+        cli.theme.as_deref(),
+        cli.style.as_deref(),
+        generated_by_readmd,
+    )?;
 
     if cli.stdout {
         print!("{html}");
