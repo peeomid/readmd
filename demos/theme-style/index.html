@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>readmd theme and style demos</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f3eee4;
+        --text: #25211b;
+        --muted: #6f665b;
+        --line: #d7cbbc;
+        --panel: #fffaf1;
+        --accent: #8b5e34;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        border-bottom: 1px solid var(--line);
+        background: rgba(243, 238, 228, 0.94);
+        backdrop-filter: blur(14px);
+        padding: 22px 28px;
+      }
+
+      h1 {
+        margin: 0 0 6px;
+        font-size: 24px;
+        line-height: 1.2;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      main { padding: 24px 28px 42px; }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+      }
+
+      .card-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.3;
+      }
+
+      .tag {
+        color: var(--muted);
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .preview {
+        height: 250px;
+        overflow: hidden;
+        background: #e6ded2;
+      }
+
+      iframe {
+        width: 1280px;
+        height: 1000px;
+        border: 0;
+        transform: scale(0.26);
+        transform-origin: 0 0;
+        pointer-events: none;
+      }
+
+      .open-link {
+        display: block;
+        border-top: 1px solid var(--line);
+        padding: 10px 14px;
+        color: var(--accent);
+        font-size: 13px;
+        font-weight: 650;
+        text-decoration: none;
+      }
+
+      .open-link:focus,
+      .open-link:hover { background: #f6ead8; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>readmd theme and style demos</h1>
+      <p>Quick scan of every built-in color theme with every reading style.</p>
+    </header>
+    <main>
+      <section class="grid" aria-label="Theme and style previews">
+        <article class="card"><div class="card-head"><h2>Paper</h2><span class="tag">editorial</span></div><div class="preview"><iframe src="paper-editorial.html" title="Paper Editorial preview"></iframe></div><a class="open-link" href="paper-editorial.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Paper</h2><span class="tag">notebook</span></div><div class="preview"><iframe src="paper-notebook.html" title="Paper Notebook preview"></iframe></div><a class="open-link" href="paper-notebook.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Paper</h2><span class="tag">technical</span></div><div class="preview"><iframe src="paper-technical.html" title="Paper Technical preview"></iframe></div><a class="open-link" href="paper-technical.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Paper</h2><span class="tag">large</span></div><div class="preview"><iframe src="paper-large.html" title="Paper Large preview"></iframe></div><a class="open-link" href="paper-large.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>White</h2><span class="tag">editorial</span></div><div class="preview"><iframe src="white-editorial.html" title="White Editorial preview"></iframe></div><a class="open-link" href="white-editorial.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>White</h2><span class="tag">notebook</span></div><div class="preview"><iframe src="white-notebook.html" title="White Notebook preview"></iframe></div><a class="open-link" href="white-notebook.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>White</h2><span class="tag">technical</span></div><div class="preview"><iframe src="white-technical.html" title="White Technical preview"></iframe></div><a class="open-link" href="white-technical.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>White</h2><span class="tag">large</span></div><div class="preview"><iframe src="white-large.html" title="White Large preview"></iframe></div><a class="open-link" href="white-large.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Graphite</h2><span class="tag">editorial</span></div><div class="preview"><iframe src="graphite-editorial.html" title="Graphite Editorial preview"></iframe></div><a class="open-link" href="graphite-editorial.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Graphite</h2><span class="tag">notebook</span></div><div class="preview"><iframe src="graphite-notebook.html" title="Graphite Notebook preview"></iframe></div><a class="open-link" href="graphite-notebook.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Graphite</h2><span class="tag">technical</span></div><div class="preview"><iframe src="graphite-technical.html" title="Graphite Technical preview"></iframe></div><a class="open-link" href="graphite-technical.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Graphite</h2><span class="tag">large</span></div><div class="preview"><iframe src="graphite-large.html" title="Graphite Large preview"></iframe></div><a class="open-link" href="graphite-large.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Polar</h2><span class="tag">editorial</span></div><div class="preview"><iframe src="polar-editorial.html" title="Polar Editorial preview"></iframe></div><a class="open-link" href="polar-editorial.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Polar</h2><span class="tag">notebook</span></div><div class="preview"><iframe src="polar-notebook.html" title="Polar Notebook preview"></iframe></div><a class="open-link" href="polar-notebook.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Polar</h2><span class="tag">technical</span></div><div class="preview"><iframe src="polar-technical.html" title="Polar Technical preview"></iframe></div><a class="open-link" href="polar-technical.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Polar</h2><span class="tag">large</span></div><div class="preview"><iframe src="polar-large.html" title="Polar Large preview"></iframe></div><a class="open-link" href="polar-large.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Sepia</h2><span class="tag">editorial</span></div><div class="preview"><iframe src="sepia-editorial.html" title="Sepia Editorial preview"></iframe></div><a class="open-link" href="sepia-editorial.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Sepia</h2><span class="tag">notebook</span></div><div class="preview"><iframe src="sepia-notebook.html" title="Sepia Notebook preview"></iframe></div><a class="open-link" href="sepia-notebook.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Sepia</h2><span class="tag">technical</span></div><div class="preview"><iframe src="sepia-technical.html" title="Sepia Technical preview"></iframe></div><a class="open-link" href="sepia-technical.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Sepia</h2><span class="tag">large</span></div><div class="preview"><iframe src="sepia-large.html" title="Sepia Large preview"></iframe></div><a class="open-link" href="sepia-large.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Midnight</h2><span class="tag">editorial</span></div><div class="preview"><iframe src="midnight-editorial.html" title="Midnight Editorial preview"></iframe></div><a class="open-link" href="midnight-editorial.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Midnight</h2><span class="tag">notebook</span></div><div class="preview"><iframe src="midnight-notebook.html" title="Midnight Notebook preview"></iframe></div><a class="open-link" href="midnight-notebook.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Midnight</h2><span class="tag">technical</span></div><div class="preview"><iframe src="midnight-technical.html" title="Midnight Technical preview"></iframe></div><a class="open-link" href="midnight-technical.html">Open full page</a></article>
+        <article class="card"><div class="card-head"><h2>Midnight</h2><span class="tag">large</span></div><div class="preview"><iframe src="midnight-large.html" title="Midnight Large preview"></iframe></div><a class="open-link" href="midnight-large.html">Open full page</a></article>
+      </section>
+    </main>
+  </body>
+</html>

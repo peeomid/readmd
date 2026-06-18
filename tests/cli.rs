@@ -1,0 +1,145 @@
+use assert_cmd::Command;
+use predicates::prelude::*;
+use std::fs;
+use tempfile::tempdir;
+
+fn bin() -> Command {
+    Command::cargo_bin("readmd").expect("binary exists")
+}
+
+#[test]
+fn default_output_writes_beside_input() {
+    let dir = tempdir().expect("temp dir");
+    let input = dir.path().join("note.md");
+    fs::write(&input, "# Hello").expect("write input");
+
+    bin().current_dir(dir.path()).arg(&input).assert().success();
+
+    assert!(dir.path().join("note.html").exists());
+}
+
+#[test]
+fn output_writes_chosen_path() {
+    let dir = tempdir().expect("temp dir");
+    let input = dir.path().join("note.md");
+    let output = dir.path().join("custom.html");
+    fs::write(&input, "# Hello").expect("write input");
+
+    bin()
+        .arg(&input)
+        .arg("--output")
+        .arg(&output)
+        .assert()
+        .success();
+
+    assert!(output.exists());
+}
+
+#[test]
+fn stdout_prints_html_and_writes_no_file() {
+    let dir = tempdir().expect("temp dir");
+    let input = dir.path().join("note.md");
+    fs::write(&input, "# Hello").expect("write input");
+
+    bin()
+        .arg(&input)
+        .arg("--stdout")
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("<!doctype html>"));
+
+    assert!(!dir.path().join("note.html").exists());
+}
+
+#[test]
+fn invalid_stdout_and_output_combo_fails() {
+    let dir = tempdir().expect("temp dir");
+    let input = dir.path().join("note.md");
+    let output = dir.path().join("custom.html");
+    fs::write(&input, "# Hello").expect("write input");
+
+    bin()
+        .arg(&input)
+        .arg("--stdout")
+        .arg("--output")
+        .arg(&output)
+        .assert()
+        .failure()
+        .stderr(predicate::str::contains("cannot be used with"));
+}
+
+#[test]
+fn invalid_output_and_tmp_combo_fails() {
+    let dir = tempdir().expect("temp dir");
+    let input = dir.path().join("note.md");
+    let output = dir.path().join("custom.html");
+    fs::write(&input, "# Hello").expect("write input");
+
+    bin()
+        .arg(&input)
+        .arg("--output")
+        .arg(&output)
+        .arg("--tmp")
+        .assert()
+        .failure()
+        .stderr(predicate::str::contains("cannot be used with"));
+}
+
+#[test]
+fn themes_list_includes_paper() {
+    bin()
+        .args(["themes", "list"])
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("paper"))
+        .stdout(predicate::str::contains("white"))
+        .stdout(predicate::str::contains("midnight"));
+}
+
+#[test]
+fn styles_list_includes_notebook() {
+    bin()
+        .args(["styles", "list"])
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("notebook"));
+}
+
+#[test]
+fn styles_print_outputs_toml() {
+    bin()
+        .args(["styles", "print", "notebook"])
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("name = \"Notebook\""))
+        .stdout(predicate::str::contains("[typography]"));
+}
+
+#[test]
+fn theme_and_style_flags_render() {
+    let dir = tempdir().expect("temp dir");
+    let input = dir.path().join("note.md");
+    fs::write(&input, "# Hello").expect("write input");
+
+    bin()
+        .arg(&input)
+        .arg("--theme")
+        .arg("sepia")
+        .arg("--style")
+        .arg("notebook")
+        .arg("--stdout")
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("#d8c7a8"))
+        .stdout(predicate::str::contains("Source Serif 4"));
+}
+
+#[test]
+fn config_print_default_prints_toml() {
+    bin()
+        .args(["config", "print-default"])
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("default_theme"))
+        .stdout(predicate::str::contains("default_style"));
+}

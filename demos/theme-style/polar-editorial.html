@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deep Research with AI - Best Practices Report</title>
+<style>html,body{margin:0;padding:0;}
+body{--canvas:#e8edf0;--panel:#f5f7f8;--panel-strong:#fbfcfc;--reader:#fbfcfc;--text:#172027;--muted:#64717b;--line:rgba(23, 32, 39, 0.13);--accent:#245f73;--accent-strong:#0d7890;--accent-soft:rgba(36, 95, 115, 0.09);--highlight:rgba(74, 144, 162, 0.22);--code-bg:#e4ecef;background:var(--canvas);color:var(--text);font-family:Newsreader, "Iowan Old Style", Georgia, serif;font-size:18px;font-weight:430;line-height:1.68;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;}
+.page{min-height:100vh;padding:42px;box-sizing:border-box;}
+@media (max-width: 720px){.page{padding:18px;}}
+.reader{color:#172027;max-width:66ch;margin:0 auto;padding:clamp(18px,3vw,40px) 0;box-sizing:border-box;font-family:Newsreader, "Iowan Old Style", Georgia, serif;font-size:18px;font-weight:430;line-height:1.68;letter-spacing:0;text-wrap:pretty;}
+.reader ::selection{background:var(--highlight);}
+.reader :target{scroll-margin-top:32px;}
+.reader a{color:#0d7890;text-decoration-thickness:0.08em;text-underline-offset:0.18em;}
+.reader .muted{color:#64717b;}
+.reader p,.reader ul,.reader ol,.reader blockquote{margin:0 0 1.08em;}
+.reader h1,.reader h2,.reader h3,.reader h4,.reader h5,.reader h6{font-family:Newsreader, "Iowan Old Style", Georgia, serif;color:color-mix(in srgb,#172027 96%,#245f73);line-height:1.13;margin:1.7em 0 0.48em;letter-spacing:0;text-wrap:balance;}
+.reader h1{font-size:calc(18px * 2.35);font-weight:700;line-height:1.03;margin-top:0;margin-bottom:0.48em;}
+.reader h2{font-size:calc(18px * 1.65);font-weight:700;line-height:1.13;margin-top:1.7em;margin-bottom:0.48em;padding-bottom:0;border-bottom:0;}
+.reader h3{color:#245f73;font-size:calc(18px * 1.28);font-weight:700;line-height:1.13;margin-top:1.7em;margin-bottom:0.48em;}
+.reader ul,.reader ol{padding-left:1.1em;list-style-position:outside;}
+.reader li{margin:0.12em 0;display:list-item;}
+.reader li + li{margin-top:0.12em;}
+.reader li::marker{color:#245f73;}
+.reader li:has(> input[type="checkbox"]){list-style:none;margin-left:-1.1em;}
+.reader li input[type="checkbox"]{width:0.82em;height:0.82em;margin:0 0.42em 0 0;vertical-align:-0.1em;appearance:none;-webkit-appearance:none;border:1.5px solid color-mix(in srgb,#245f73 62%,rgba(23, 32, 39, 0.13));border-radius:999px;background:transparent;display:inline-grid;place-content:center;}
+.reader li input[type="checkbox"]:checked{border-color:#245f73;background:#245f73;}
+.reader li input[type="checkbox"]:checked::before{content:"";width:0.28em;height:0.5em;border-right:2px solid white;border-bottom:2px solid white;transform:translateY(-0.04em) rotate(45deg);}
+.reader code{font-family:"SF Mono", ui-monospace, monospace;background:#ddebf0;color:#0f6072;padding:0.12em 0.32em;border-radius:0.34em;font-size:0.84em;letter-spacing:0;}
+.reader pre{background:#e4ecef;color:#172027;border:1px solid rgba(36, 95, 115, 0.16);border-radius:16px;padding:1.1em;overflow:auto;margin:1.2em 0;}
+.reader pre code{background:transparent;color:inherit;padding:0;border-radius:0;}
+.reader table{width:100%;border-collapse:collapse;margin:1.2em 0;font-size:0.92em;}
+.reader th,.reader td{padding:0.55em 0.7em;border-bottom:1px solid rgba(23, 32, 39, 0.13);vertical-align:top;text-align:left;}
+.reader th{background:transparent;color:#172027;font-weight:700;}
+.reader tbody tr:nth-child(odd){background:transparent;}
+.reader tbody tr:nth-child(even){background:transparent;}
+.reader blockquote{background:rgba(36, 95, 115, 0.09);color:#172027;border-left:4px solid #2d7890;border-radius:0 18px 18px 0;padding:0.9em 1.1em;margin:calc(1.08em * 1.25) 0;}
+.reader .frontmatter{margin:0 0 1.2em;padding:0.95em 1em;border:1px solid color-mix(in srgb,rgba(23, 32, 39, 0.13) 76%,transparent);border-radius:16px;background:color-mix(in srgb,#fbfcfc 72%,transparent);}
+.reader .frontmatter-title{margin:0 0 0.75em;color:#64717b;font-size:0.78em;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;}
+.reader .frontmatter-list{display:flex;flex-direction:column;gap:0.7em;margin:0;}
+.reader .frontmatter-item{display:flex;flex-direction:column;gap:0.18em;margin:0;}
+.reader .frontmatter-item dt{margin:0;color:#64717b;font-size:0.78em;font-weight:650;letter-spacing:0.02em;}
+.reader .frontmatter-item dd{margin:0;color:#172027;font-size:0.96em;line-height:1.45;word-break:break-word;}
+.reader img{max-width:100%;height:auto;border-radius:18px;box-shadow:0 14px 42px rgba(0,0,0,0.16);}
+.reader hr{width:34%;border:0;border-top:1px solid rgba(23, 32, 39, 0.13);margin:2.4em auto;}
+.reader .syntax-keyword{color:#0d7890;}
+.reader .syntax-string{color:#245f73;}
+.reader .syntax-comment{color:#64717b;}
+.reader .syntax-function{color:#0d7890;}
+.reader .syntax-number{color:#0d7890;}
+.reader .syntax-operator{color:#172027;}
+</style>
+</head>
+<body>
+<main class="page"><article class="reader"><h1>Deep Research with AI - Best Practices Report</h1>
+<p><strong>Date:</strong> 2026-01-27
+<strong>Topic:</strong> Deep research techniques with AI
+<strong>Source:</strong> Community best practices synthesis</p>
+<hr>
+<h2>Summary</h2>
+<p>Deep research with AI works best as an iterative process. The strongest workflows combine source checks, structured prompts, context building, confidence scoring, and review loops.</p>
+<hr>
+<h2>Key Techniques</h2>
+<h3>1. Iterative Research Loops</h3>
+<ul>
+<li>Use AI to search, analyze, then search again with refined queries</li>
+<li>Chain multiple research steps instead of using one large prompt</li>
+<li>Let each iteration build on previous findings</li>
+</ul>
+<h3>2. Source Verification</h3>
+<ul>
+<li>Cross-reference AI outputs with primary sources</li>
+<li>AI can hallucinate citations, so verify URLs and dates</li>
+<li>Prefer primary sources over summaries</li>
+</ul>
+<h3>3. Structured Research Frameworks</h3>
+<ul>
+<li>Define research questions before starting</li>
+<li>Break broad topics into specific sub-queries</li>
+<li>Create a research plan with milestones</li>
+</ul>
+<h3>4. Context Building</h3>
+<ul>
+<li>Feed useful background documents to AI before analysis</li>
+<li>Use retrieval-based workflows for domain-specific research</li>
+<li>Build a searchable knowledge base for complex topics</li>
+</ul>
+<h3>5. Prompt Engineering for Research</h3>
+<ul>
+<li>Ask for sources with URLs in every research prompt</li>
+<li>Request confidence levels for claims and findings</li>
+<li>Ask for evidence and counterarguments</li>
+</ul>
+<hr>
+<h2>Prompt Templates</h2>
+<h3>Basic Research Prompt</h3>
+<pre><code class="language-text">Research [TOPIC]. For each claim, provide:
+1. The finding
+2. Source URL
+3. Confidence level: high, medium, or low
+4. Date of information
+</code></pre>
+<h3>Comparative Analysis Prompt</h3>
+<pre><code class="language-text">Compare [TOPIC A] vs [TOPIC B]. Include:
+- Key differences
+- Use cases for each
+- Trade-offs
+- Recent developments
+- Source URLs
+</code></pre>
+<hr>
+<h2>Workflow Example</h2>
+<pre><code class="language-text">Step 1: Broad search
+Step 2: Analyze and refine
+Step 3: Deep dives
+Step 4: Synthesis
+Step 5: Verification
+</code></pre>
+<hr>
+<h2>Common Pitfalls</h2>
+<table><thead><tr><th>Pitfall</th><th>Solution</th></tr></thead><tbody>
+<tr><td>Single-shot prompting</td><td>Use iterative loops</td></tr>
+<tr><td>Accepting AI claims at face value</td><td>Verify sources</td></tr>
+<tr><td>Too broad queries</td><td>Break into specific sub-queries</td></tr>
+<tr><td>No confidence scoring</td><td>Ask for confidence levels</td></tr>
+<tr><td>Missing dates</td><td>Request dates for all claims</td></tr>
+</tbody></table>
+<hr>
+<h2>Research Quality Checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox">
+Research question clearly defined</li>
+<li><input disabled="" type="checkbox">
+Multiple sources for each claim</li>
+<li><input disabled="" type="checkbox">
+Primary sources preferred over summaries</li>
+<li><input disabled="" type="checkbox">
+Dates included for all information</li>
+<li><input disabled="" type="checkbox">
+Confidence levels assigned</li>
+<li><input disabled="" type="checkbox">
+Contradictions noted and resolved</li>
+<li><input disabled="" type="checkbox">
+Gaps identified for further research</li>
+<li><input disabled="" type="checkbox">
+Sources verified</li>
+</ul>
+<hr>
+<h2>References</h2>
+<ul>
+<li>General deep research community practices</li>
+<li>Iterative research methodology from AI practitioners</li>
+<li>Chain-of-thought prompting research papers</li>
+<li>Retrieval-augmented generation best practices</li>
+</ul>
+</article></main>
+</body>
+</html>

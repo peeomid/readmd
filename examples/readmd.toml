@@ -1,0 +1,180 @@
+default_theme = "paper"
+default_style = "editorial"
+
+[themes.paper]
+name = "Paper"
+
+[themes.paper.page]
+background = "#e9e0d0"
+padding = "48px"
+mobile_padding = "18px"
+
+[themes.paper.reader]
+background = "#fffaf1"
+text = "#1f1a14"
+muted = "#6f6557"
+link = "#a04619"
+width = "68ch"
+border = "rgba(48, 38, 25, 0.15)"
+shadow = "0 24px 80px rgba(64, 48, 24, 0.16)"
+radius = "8px"
+
+[themes.paper.typography]
+body_font = "Newsreader, Georgia, serif"
+heading_font = "Newsreader, Georgia, serif"
+code_font = "ui-monospace, SFMono-Regular, Menlo, monospace"
+font_size = "18px"
+line_height = 1.68
+paragraph_gap = "1.05em"
+
+[themes.paper.headings.h1]
+size = "2.35em"
+weight = 700
+line_height = 1.12
+margin_top = "0"
+margin_bottom = "0.7em"
+
+[themes.paper.headings.h2]
+size = "1.65em"
+weight = 700
+line_height = 1.18
+margin_top = "1.8em"
+margin_bottom = "0.55em"
+border_bottom = "rgba(48, 38, 25, 0.12)"
+
+[themes.paper.headings.h3]
+size = "1.28em"
+weight = 700
+line_height = 1.22
+margin_top = "1.5em"
+margin_bottom = "0.45em"
+
+[themes.paper.code]
+inline_background = "#f0dfc5"
+inline_text = "#7b3519"
+block_background = "#efe3cf"
+block_text = "#3f3124"
+border = "rgba(126, 83, 33, 0.2)"
+radius = "6px"
+padding = "16px"
+
+[themes.paper.syntax]
+keyword = "#9a3412"
+string = "#166534"
+comment = "#78716c"
+function = "#1d4ed8"
+number = "#7c3aed"
+operator = "#57534e"
+
+[themes.paper.table]
+border = "rgba(48, 38, 25, 0.16)"
+header_background = "#efe3cf"
+header_text = "#1f1a14"
+row_background = "#fffaf1"
+row_alt_background = "#f7efdf"
+cell_padding = "10px 12px"
+
+[themes.paper.blockquote]
+background = "rgba(143, 67, 30, 0.08)"
+border = "#a95a2a"
+text = "#4f4639"
+padding = "12px 18px"
+style = "left-border"
+
+[themes.paper.list]
+marker = "#8f431e"
+indent = "1.4em"
+item_gap = "0.35em"
+
+[themes.paper.hr]
+color = "rgba(48, 38, 25, 0.18)"
+margin = "2.4em 0"
+
+[themes.night]
+name = "Night"
+
+[themes.night.page]
+background = "#10100f"
+padding = "48px"
+mobile_padding = "18px"
+
+[themes.night.reader]
+background = "#171614"
+text = "#f0e5d2"
+muted = "#b5a890"
+link = "#f0b46e"
+width = "68ch"
+border = "rgba(240, 229, 210, 0.13)"
+shadow = "0 24px 80px rgba(0, 0, 0, 0.48)"
+radius = "8px"
+
+[themes.night.typography]
+body_font = "Newsreader, Georgia, serif"
+heading_font = "Newsreader, Georgia, serif"
+code_font = "ui-monospace, SFMono-Regular, Menlo, monospace"
+font_size = "18px"
+line_height = 1.68
+paragraph_gap = "1.05em"
+
+[themes.night.headings.h1]
+size = "2.2em"
+weight = 700
+line_height = 1.12
+margin_top = "0"
+margin_bottom = "0.7em"
+
+[themes.night.headings.h2]
+size = "1.56em"
+weight = 700
+line_height = 1.18
+margin_top = "1.8em"
+margin_bottom = "0.55em"
+border_bottom = "rgba(240, 229, 210, 0.13)"
+
+[themes.night.headings.h3]
+size = "1.24em"
+weight = 700
+line_height = 1.22
+margin_top = "1.5em"
+margin_bottom = "0.45em"
+
+[themes.night.code]
+inline_background = "#30291f"
+inline_text = "#f4c183"
+block_background = "#242119"
+block_text = "#f0e5d2"
+border = "rgba(224, 161, 95, 0.18)"
+radius = "6px"
+padding = "16px"
+
+[themes.night.syntax]
+keyword = "#f59e0b"
+string = "#86efac"
+comment = "#a8a29e"
+function = "#93c5fd"
+number = "#c4b5fd"
+operator = "#d6d3d1"
+
+[themes.night.table]
+border = "rgba(240, 229, 210, 0.14)"
+header_background = "#242119"
+header_text = "#f0e5d2"
+row_background = "#171614"
+row_alt_background = "#1f1d19"
+cell_padding = "10px 12px"
+
+[themes.night.blockquote]
+background = "rgba(224, 161, 95, 0.1)"
+border = "#d99552"
+text = "#dacdb8"
+padding = "12px 18px"
+style = "left-border"
+
+[themes.night.list]
+marker = "#e0a15f"
+indent = "1.4em"
+item_gap = "0.35em"
+
+[themes.night.hr]
+color = "rgba(240, 229, 210, 0.14)"
+margin = "2.4em 0"
